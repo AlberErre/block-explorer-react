@@ -7,40 +7,17 @@ class TransactionInfo extends Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-        badgeStyles: {
-          greyBackground: "#dceaef",
-          greyTextColor: "#6d8088",
-          greenBackground: "#21d48f",
-          greenTextColor: "white",
-        },
-        transactioninfo: {
-            value: 0,
-            from: "0x",
-            to: "0x"
-        }
-    };
   }
 
   componentDidMount() {
 
-    this.getTransactionInfoFromEthereum(this.props.transactionSelected);
+    this.props.getTransactionInfoFromEthereum(this.props.transactionSelected);
   }
-
-  getTransactionInfoFromEthereum = async (transactionHash) => {
-    
-    let transactioninfo = await this.props.web3.eth.getTransaction(transactionHash);
-
-    this.setState({
-        transactioninfo: transactioninfo
-    });
-  };
 
   render() {
 
-    const { badgeStyles, transactioninfo } = this.state;
-    
+    const { badgeStyles, transactioninfo } = this.props;
+
     return (
         
       <div className="TransactionInfoContainer">

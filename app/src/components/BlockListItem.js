@@ -9,17 +9,39 @@ class BlockListItem extends Component {
     super(props);
 
     this.state = {
-      activeItem: 0
+      activeItem: 0,
+      transactioninfo: {
+        value: 0,
+        from: "0x",
+        to: "0x"
+      },
+      badgeStyles: {
+        greyBackground: "#dceaef",
+        greyTextColor: "#6d8088",
+        greenBackground: "#21d48f",
+        greenTextColor: "white",
+      }
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.getTransactionInfoFromEthereum = this.getTransactionInfoFromEthereum.bind(this);
   }
 
   handleChange(index) {
+
     this.setState({ 
       activeItem: index 
-    })
-  }
+    }, () => this.getTransactionInfoFromEthereum(this.props.block.blockTransactions[this.state.activeItem]));
+  };
+
+  getTransactionInfoFromEthereum = async (transactionHash) => {
+    
+    let transactioninfo = await this.props.web3.eth.getTransaction(transactionHash);
+
+    this.setState({
+        transactioninfo: transactioninfo
+    });
+  };
 
   render() {
 
@@ -60,6 +82,9 @@ class BlockListItem extends Component {
                 <TransactionInfo
                   transactionSelected={this.props.block.blockTransactions[this.state.activeItem]}
                   web3={this.props.web3}
+                  transactioninfo={this.state.transactioninfo}
+                  getTransactionInfoFromEthereum={this.getTransactionInfoFromEthereum}
+                  badgeStyles={this.state.badgeStyles}
                 />
               </div>
             </div>
