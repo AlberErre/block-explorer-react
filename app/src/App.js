@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import getWeb3 from "./utils/getWeb3";
 import MainInfo from "./components/MainInfo";
+import BlockList from "./components/BlockList";
 
 import "./App.css";
 
@@ -95,6 +96,10 @@ class App extends Component {
             difficulty={this.state.difficulty}
           />
         </div>
+
+        <BlockList
+          lastTenBlocks={this.state.lastTenBlocks}
+        />
 
       </div>
     );
