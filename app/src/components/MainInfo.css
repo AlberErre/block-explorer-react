@@ -1,0 +1,27 @@
+.headerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.headerGroupItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.headerInnerItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.currentBlockNumberContainer {
+    height: 100%;
+}
+
+.currentBlockNumber {
+    font-size: 1.8em;
+    padding: 6px;
+}

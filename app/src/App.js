@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { AragonApp } from '@aragon/ui'
+import { AragonApp, Text } from '@aragon/ui';
 import getWeb3 from "./utils/getWeb3";
 import MainInfo from "./components/MainInfo";
 import BlockList from "./components/BlockList";
@@ -38,7 +38,7 @@ class App extends Component {
         networkId: networkId
       }, this.getLastBlockInfo);
 
-      setInterval(this.getLastBlockInfo, 25000);
+      setInterval(this.getLastBlockInfo, 10000);
 
     } catch (error) {
       // Catch any errors for any of the above operations.
@@ -111,10 +111,11 @@ class App extends Component {
 
         <div className="App">
 
-          <div className="Header">
-            <h1>Good to Go!</h1>
-            <p>Here is the last block info:</p>
+          <Text size="xxlarge" style={{margin: "20px"}}>
+            Ethereum Block Explorer
+          </Text>
 
+          <div className="aragonCard Header">
             <MainInfo
               networkId={this.state.networkId}
               lastBlockNumber={this.state.lastBlockNumber}

@@ -1,23 +1,133 @@
 import React, { Component } from "react";
+import Moment from 'react-moment';
+import { Text, Badge } from '@aragon/ui';
 import "./MainInfo.css";
 
 class MainInfo extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      badgeStyles: {
+        greyBackground: "#dceaef",
+        greyTextColor: "#6d8088",
+        greenBackground: "#21d48f",
+        greenTextColor: "white",
+      }
+    };
   }
 
   render() {
+
+    const { badgeStyles } = this.state;
+
     return (
-      <div>
-        <div>networkId: {this.props.networkId}</div>
-        <div>lastBlockNumber: {this.props.lastBlockNumber}</div>
-        <div>lastBlockHash: {this.props.lastBlockHash}</div>
-        <div>lastBlockSize: {this.props.lastBlockSize}</div>
-        <div>gasUsedOnBlock: {this.props.gasUsedOnBlock}</div>
-        <div>lastBlockTime: {this.props.lastBlockTime}</div>
-        <div>lastBlockTransactions: {this.props.lastBlockTransactions}</div>
-        <div>difficulty: {this.props.difficulty}</div>
+      <div className="headerContainer">
+
+        <div className="headerGroupItem">
+
+          <div className="headerInnerItem">
+            <Text size="xlarge">
+              Last block
+            </Text>
+            <div className="currentBlockNumberContainer">
+              <Badge shape="compact"
+                background={badgeStyles.greenBackground} 
+                foreground={badgeStyles.greenTextColor}>
+                <div className="currentBlockNumber">
+                  {this.props.lastBlockNumber}            
+                </div>
+              </Badge>
+            </div>
+          </div>
+
+          <div className="headerInnerItem">
+            <Text size="small">
+              Time since last block
+            </Text>
+            <span>
+              <Badge shape="compact"
+                background={badgeStyles.greyBackground} 
+                foreground={badgeStyles.greyTextColor}>
+                  <Moment durationFromNow interval={1000} ago>
+                    {new Date(this.props.lastBlockTime*1000)}
+                  </Moment>         
+              </Badge>
+            </span>
+          </div>
+
+        </div>
+
+        <div className="headerGroupItem">
+
+          <div className="headerInnerItem">
+            <span>Network ID</span>
+            <span>
+              <Badge shape="compact"
+                background={badgeStyles.greyBackground} 
+                foreground={badgeStyles.greyTextColor}
+                style={{paddingRight: "5px",paddingLeft: "5px"}}>
+                {this.props.networkId}            
+              </Badge>
+            </span>
+          </div>
+
+          <div className="headerInnerItem">
+            <span>Gas used</span>
+            <span>
+              <Badge shape="compact"
+                background={badgeStyles.greyBackground} 
+                foreground={badgeStyles.greyTextColor}>
+                {this.props.gasUsedOnBlock}            
+              </Badge>
+            </span>
+          </div>
+
+          <div className="headerInnerItem">
+            <span>Difficulty</span>
+            <span>
+              <Badge shape="compact"
+                background={badgeStyles.greyBackground} 
+                foreground={badgeStyles.greyTextColor}>
+                {this.props.difficulty}            
+              </Badge>
+            </span>
+          </div>
+        </div>
+
+        <div className="headerGroupItem">
+          <div className="headerInnerItem">
+            <span>Block hash</span>
+            <Badge shape="compact">
+              {this.props.lastBlockHash}            
+            </Badge>
+          </div>
+
+          <div className="headerInnerItem">
+            <span>Block size</span>
+            <span>
+              <Badge shape="compact"
+                background={badgeStyles.greyBackground} 
+                foreground={badgeStyles.greyTextColor}>
+                {this.props.lastBlockSize}            
+              </Badge>
+            </span>
+
+          </div>
+
+          <div className="headerInnerItem">
+            <span>Timestamp</span>
+            <span>
+              <Badge shape="compact"
+                background={badgeStyles.greyBackground} 
+                foreground={badgeStyles.greyTextColor}>
+                {this.props.lastBlockTime}            
+              </Badge>
+            </span>
+          </div>
+        </div>
+
       </div>
     );
   }
