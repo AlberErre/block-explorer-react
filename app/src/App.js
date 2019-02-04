@@ -1,7 +1,28 @@
 import React, { Component } from "react";
 import getWeb3 from "./utils/getWeb3";
+import MainInfo from "./components/MainInfo";
+
+import "./App.css";
 
 class App extends Component {
+
+  constructor() {
+    super();
+
+    this.state = {
+      web3: null,
+      accounts: null,
+      networkId: null,
+      lastBlockNumber: null,
+      lastBlockHash: null,
+      lastBlockSize: null, 
+      gasUsedOnBlock: null,
+      lastBlockTime: null,
+      lastBlockTransactions: null,
+      difficulty: null,
+      lastTenBlocks: [],
+    };
+  }
 
   componentDidMount = async () => {
     try {
@@ -13,7 +34,9 @@ class App extends Component {
         web3: web3,
         accounts: accounts,
         networkId: networkId
-      });
+      }, this.getLastBlockInfo);
+
+      setInterval(this.getLastBlockInfo, 25000);
 
     } catch (error) {
       // Catch any errors for any of the above operations.
@@ -22,6 +45,32 @@ class App extends Component {
       );
       console.error(error);
     }
+  };
+
+  getLastBlockInfo = async () => {
+    
+    const { web3 } = this.state;
+
+    let lastBlockNumber = await web3.eth.getBlockNumber();
+    let lastBlock = await web3.eth.getBlock(lastBlockNumber);
+    let lastBlockHash = lastBlock.hash;
+    let lastBlockSize = lastBlock.size;
+    let gasUsedOnBlock = lastBlock.gasUsed;
+    let lastBlockTime = lastBlock.timestamp;
+    let lastBlockTransactions = lastBlock.transactions;
+    let difficulty = lastBlock.difficulty;
+
+    this.createLastTenBlocks(lastBlockNumber, web3);
+
+    this.setState({
+      lastBlockNumber: lastBlockNumber,
+      lastBlockHash: lastBlockHash,
+      lastBlockSize: lastBlockSize, 
+      gasUsedOnBlock: gasUsedOnBlock,
+      lastBlockTime: lastBlockTime,
+      lastBlockTransactions: lastBlockTransactions,
+      difficulty: difficulty,
+    });
   };
 
   render() {
@@ -34,6 +83,17 @@ class App extends Component {
         <div className="Header">
           <h1>Good to Go!</h1>
           <p>Here is the last block info:</p>
+
+          <MainInfo
+            networkId={this.state.networkId}
+            lastBlockNumber={this.state.lastBlockNumber}
+            lastBlockHash={this.state.lastBlockHash}
+            lastBlockSize={this.state.lastBlockSize}
+            gasUsedOnBlock={this.state.gasUsedOnBlock}
+            lastBlockTime={this.state.lastBlockTime}
+            lastBlockTransactions={this.state.lastBlockTransactions}
+            difficulty={this.state.difficulty}
+          />
         </div>
 
       </div>
