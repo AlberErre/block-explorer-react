@@ -50,9 +50,11 @@ class MainInfo extends Component {
               <Badge shape="compact"
                 background={badgeStyles.greyBackground} 
                 foreground={badgeStyles.greyTextColor}>
-                  <Moment durationFromNow interval={1000} ago>
-                    {new Date(this.props.lastBlockTime*1000)}
-                  </Moment>         
+                  <div className="timeAgo">
+                    <Moment durationFromNow interval={1000} ago>
+                      {new Date(this.props.lastBlockTime*1000)}
+                    </Moment>   
+                  </div>      
               </Badge>
             </span>
           </div>
