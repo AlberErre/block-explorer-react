@@ -59,6 +59,7 @@ class BlockListItem extends Component {
               <div>
                 <TransactionInfo
                   transactionSelected={this.props.block.blockTransactions[this.state.activeItem]}
+                  web3={this.props.web3}
                 />
               </div>
             </div>

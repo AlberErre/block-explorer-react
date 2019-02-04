@@ -130,6 +130,7 @@ class App extends Component {
 
           <BlockList
             lastTenBlocks={this.state.lastTenBlocks}
+            web3={this.state.web3}
           />
 
         </div>

@@ -19,6 +19,7 @@ class BlockList extends Component {
                         <BlockListItem 
                             block={block}
                             index={i}
+                            web3={this.props.web3}
                         />
                     </div>
                 );
