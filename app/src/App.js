@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { AragonApp } from '@aragon/ui'
 import getWeb3 from "./utils/getWeb3";
 import MainInfo from "./components/MainInfo";
 import BlockList from "./components/BlockList";
@@ -106,29 +107,32 @@ class App extends Component {
       return <div>Loading Web3, accounts, and contract...</div>;
     }
     return (
-      <div className="App">
+      <AragonApp publicUrl="/aragon-ui-assets/">
 
-        <div className="Header">
-          <h1>Good to Go!</h1>
-          <p>Here is the last block info:</p>
+        <div className="App">
 
-          <MainInfo
-            networkId={this.state.networkId}
-            lastBlockNumber={this.state.lastBlockNumber}
-            lastBlockHash={this.state.lastBlockHash}
-            lastBlockSize={this.state.lastBlockSize}
-            gasUsedOnBlock={this.state.gasUsedOnBlock}
-            lastBlockTime={this.state.lastBlockTime}
-            lastBlockTransactions={this.state.lastBlockTransactions}
-            difficulty={this.state.difficulty}
+          <div className="Header">
+            <h1>Good to Go!</h1>
+            <p>Here is the last block info:</p>
+
+            <MainInfo
+              networkId={this.state.networkId}
+              lastBlockNumber={this.state.lastBlockNumber}
+              lastBlockHash={this.state.lastBlockHash}
+              lastBlockSize={this.state.lastBlockSize}
+              gasUsedOnBlock={this.state.gasUsedOnBlock}
+              lastBlockTime={this.state.lastBlockTime}
+              lastBlockTransactions={this.state.lastBlockTransactions}
+              difficulty={this.state.difficulty}
+            />
+          </div>
+
+          <BlockList
+            lastTenBlocks={this.state.lastTenBlocks}
           />
+
         </div>
-
-        <BlockList
-          lastTenBlocks={this.state.lastTenBlocks}
-        />
-
-      </div>
+      </AragonApp>
     );
   }
 }
