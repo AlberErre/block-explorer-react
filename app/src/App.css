@@ -32,14 +32,14 @@
 
 .aragonCard {
   box-shadow: rgba(0, 0, 0, 0.07) 0px 4px 6px 0px;
-  background-color: rgb(249, 250, 252);
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   height: 100%;
   width: 80vw;
-  border-radius: 12px;
+  border-radius: 3px;
   padding: 30px;
   transition: all 0.25s ease-in-out 0s;
 }

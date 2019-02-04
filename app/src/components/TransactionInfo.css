@@ -1,0 +1,10 @@
+.TransactionInfoContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.transactionText {
+    font-size: 1.4em;
+}

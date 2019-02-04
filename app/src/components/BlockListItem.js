@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Table, TableHeader, TableRow, TableCell, Text, Badge, DropDown } from '@aragon/ui';
+import TransactionInfo from "./TransactionInfo";
 import "./BlockListItem.css";
 
 class BlockListItem extends Component {
@@ -46,11 +47,21 @@ class BlockListItem extends Component {
                 </div>
               </Badge>
             </div>
-            <DropDown
-              items={this.props.block.blockTransactions}
-              active={this.state.activeItem}
-              onChange={this.handleChange}
-            />
+            <div className="tableCellContent">
+              <span>
+              Block transactions
+              </span>
+              <DropDown
+                items={this.props.block.blockTransactions}
+                active={this.state.activeItem}
+                onChange={this.handleChange}
+              />
+              <div>
+                <TransactionInfo
+                  transactionSelected={this.props.block.blockTransactions[this.state.activeItem]}
+                />
+              </div>
+            </div>
             </TableCell>
 
           </TableRow>
