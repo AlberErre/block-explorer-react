@@ -74,6 +74,33 @@ class App extends Component {
     });
   };
 
+  createLastTenBlocks = async (blockNumber, _web3)  => {
+    let blocksArray = [1,2,3,4,5,6,7,8,9,10];
+
+    Promise.all(
+      
+      blocksArray.map( async (e, i) => {
+      
+        let block = await _web3.eth.getBlock(blockNumber - i);
+  
+        return {
+          number: blockNumber - i,
+          blockHash: block.hash,
+          blockSize: block.size,
+          gasUsedOnBlock: block.gasUsed,
+          blockTime: block.timestamp,
+          blockTransactions: block.transactions,
+          blockDifficulty: block.difficulty,
+        };
+      })
+
+    ).then( result => {
+      this.setState({
+        lastTenBlocks: result
+      });
+    });
+  };
+
   render() {
     if (!this.state.web3) {
       return <div>Loading Web3, accounts, and contract...</div>;
