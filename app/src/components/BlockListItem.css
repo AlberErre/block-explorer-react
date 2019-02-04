@@ -1,0 +1,13 @@
+.BlockListItem {
+    width: 80vw;
+    margin-bottom: 10px;
+}
+
+.itemBlockHash {
+    font-size: 1em;
+}
+
+.tableCellContent {
+    display: flex;
+    flex-direction: column;
+}

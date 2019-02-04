@@ -18,6 +18,7 @@ class BlockList extends Component {
                     <div key={i}> 
                         <BlockListItem 
                             block={block}
+                            index={i}
                         />
                     </div>
                 );
