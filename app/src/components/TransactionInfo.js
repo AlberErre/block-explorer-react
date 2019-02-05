@@ -9,11 +9,6 @@ class TransactionInfo extends Component {
     super(props);
   }
 
-  componentDidMount() {
-
-    this.props.getTransactionInfoFromEthereum(this.props.transactionSelected);
-  }
-
   render() {
 
     const { badgeStyles, transactioninfo } = this.props;

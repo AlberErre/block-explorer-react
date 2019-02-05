@@ -20,32 +20,54 @@ class BlockListItem extends Component {
         greyTextColor: "#6d8088",
         greenBackground: "#21d48f",
         greenTextColor: "white",
-      }
+      },
+      onlyPaidTransactions: []
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.getTransactionInfoFromEthereum = this.getTransactionInfoFromEthereum.bind(this);
+    this.updateTransactionInfo = this.updateTransactionInfo.bind(this);
   }
 
   handleChange(index) {
 
     this.setState({ 
       activeItem: index 
-    }, () => this.getTransactionInfoFromEthereum(this.props.block.blockTransactions[this.state.activeItem]));
+    }, () => this.updateTransactionInfo(this.state.onlyPaidTransactions[this.state.activeItem]));
   };
 
-  getTransactionInfoFromEthereum = async (transactionHash) => {
-    
-    let transactioninfo = await this.props.web3.eth.getTransaction(transactionHash);
-
+  updateTransactionInfo = async (transactionObject) => {
+  
     this.setState({
-        transactioninfo: transactioninfo
+        transactioninfo: transactionObject
     });
   };
 
-  render() {
+  returnTransactionInfoFromEthereum = async (transactionHash) => {
+    
+    return await this.props.web3.eth.getTransaction(transactionHash);
+  };
 
-    console.log(this.props.block);
+  componentDidMount = async () => {
+
+    //show only paid transactions
+    Promise.all(
+
+      this.props.block.blockTransactions.map( transactionHash => {
+
+        return this.returnTransactionInfoFromEthereum(transactionHash);
+      })
+    
+    ).then( transactionData => {
+
+      const onlyPaidTransactions = transactionData.filter( transaction => transaction.value > 0 );
+
+      this.setState({
+        onlyPaidTransactions: onlyPaidTransactions
+      }, () => this.updateTransactionInfo(this.state.onlyPaidTransactions[this.state.activeItem]) );
+    });
+  }
+
+  render() {
     
     return (
       <div className="BlockListItem">
@@ -74,16 +96,15 @@ class BlockListItem extends Component {
               Block transactions
               </span>
               <DropDown
-                items={this.props.block.blockTransactions}
+                items={this.state.onlyPaidTransactions.map(transaction => transaction.hash)}
                 active={this.state.activeItem}
                 onChange={this.handleChange}
               />
               <div>
                 <TransactionInfo
-                  transactionSelected={this.props.block.blockTransactions[this.state.activeItem]}
+                  transactionObjectSelected={this.state.onlyPaidTransactions[this.state.activeItem]}
                   web3={this.props.web3}
                   transactioninfo={this.state.transactioninfo}
-                  getTransactionInfoFromEthereum={this.getTransactionInfoFromEthereum}
                   badgeStyles={this.state.badgeStyles}
                 />
               </div>
