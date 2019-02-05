@@ -61,9 +61,30 @@ class BlockListItem extends Component {
 
       const onlyPaidTransactions = transactionData.filter( transaction => transaction.value > 0 );
 
-      this.setState({
-        onlyPaidTransactions: onlyPaidTransactions
-      }, () => this.updateTransactionInfo(this.state.onlyPaidTransactions[this.state.activeItem]) );
+      console.log(onlyPaidTransactions);
+
+      if (onlyPaidTransactions.length > 0) {
+
+        this.setState({
+          onlyPaidTransactions: onlyPaidTransactions
+        }, () => this.updateTransactionInfo(this.state.onlyPaidTransactions[0]));
+
+      } else {
+
+        let noPaidTransactionsObject = [{
+          gasPrice: 0,
+          hash: "No paid transactions has been sent on this block",
+          from: "do not apply",
+          to: "do not apply",
+          value: 0
+        }];
+
+        this.setState({
+          onlyPaidTransactions: noPaidTransactionsObject
+        }, () => this.updateTransactionInfo(noPaidTransactionsObject[0]));
+
+      }
+
     });
   }
 
