@@ -1,5 +1,5 @@
 .BlockListItem {
-    width: 80vw;
+    width: 75vw;
     margin-bottom: 10px;
 }
 
@@ -8,6 +8,16 @@
 }
 
 .tableCellContent {
+    padding: 10px;
     display: flex;
     flex-direction: column;
+}
+
+.etherscanButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    padding: 20px;
 }

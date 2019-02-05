@@ -14,6 +14,7 @@ class MainInfo extends Component {
         greyTextColor: "#6d8088",
         greenBackground: "#21d48f",
         greenTextColor: "white",
+        blueEagleBackground: "#00cbe6",
       }
     };
   }
@@ -33,8 +34,8 @@ class MainInfo extends Component {
             </Text>
             <div className="currentBlockNumberContainer">
               <Badge shape="compact"
-                background={badgeStyles.greenBackground} 
-                foreground={badgeStyles.greenTextColor}>
+              background={"transparent"} 
+              foreground={"white"}>
                 <div className="currentBlockNumber">
                   {this.props.lastBlockNumber}            
                 </div>

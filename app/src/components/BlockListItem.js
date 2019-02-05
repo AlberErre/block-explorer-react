@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, TableHeader, TableRow, TableCell, Text, Badge, DropDown } from '@aragon/ui';
+import { Table, TableHeader, TableRow, TableCell, Text, Badge, DropDown, Button, IconShare } from '@aragon/ui';
 import TransactionInfo from "./TransactionInfo";
 import "./BlockListItem.css";
 
@@ -20,6 +20,7 @@ class BlockListItem extends Component {
         greyTextColor: "#6d8088",
         greenBackground: "#21d48f",
         greenTextColor: "white",
+        blueEagleBackground: "#00cbe6",
       },
       onlyPaidTransactions: []
     };
@@ -103,15 +104,20 @@ class BlockListItem extends Component {
 
             <TableCell>
             <div className="tableCellContent">
-              <span>
-              Block hash
-              </span>
-              <Badge shape="compact">
-                <div className="itemBlockHash">
-                  {this.props.block.blockHash}
+              <Button.Anchor mode="outline" wide href="https://aragon.one/" target="_blank">
+                <div className="etherscanButton">
+                  <span>
+                    <IconShare />
+                  </span>
+                  <Text size="normal">see</Text>
+                  <Text size="normal" style={{marginBottom: "5px"}}>transaction</Text>
+                  <Text size="xsmall">(etherscan.io)</Text>
                 </div>
-              </Badge>
+              </Button.Anchor>
             </div>
+
+
+
             <div className="tableCellContent">
               <span>
               Block transactions
