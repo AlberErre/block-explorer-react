@@ -7,7 +7,7 @@ class TransactionInfo extends Component {
 
   transformWeiToEther = (amount) => {
 
-    return this.props.web3.utils.fromWei(amount, 'ether');
+    return this.props.web3.utils.fromWei(String(amount), 'ether');
   };
 
   render() {
