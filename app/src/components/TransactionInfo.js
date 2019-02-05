@@ -5,10 +5,6 @@ import "./TransactionInfo.css";
 
 class TransactionInfo extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
 
     const { badgeStyles, transactioninfo } = this.props;

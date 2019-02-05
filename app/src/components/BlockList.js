@@ -4,10 +4,6 @@ import "./BlockList.css";
 
 class BlockList extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     
     return (
