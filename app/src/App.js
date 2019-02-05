@@ -110,7 +110,7 @@ class App extends Component {
         <div className="App">
 
           <Text size="xxlarge" style={{margin: "20px"}}>
-            Ethereum Block Explorer
+          <i class="fab fa-ethereum"></i> Ethereum Block Explorer
           </Text>
 
           <div className="aragonCard Header">
@@ -126,10 +126,18 @@ class App extends Component {
             />
           </div>
 
+          <Text size="xsmall" style={{marginBottom: "30px"}}>
+            Here you can see the last ten blocks on Ethereum and all its transactions within each block. Transactions without ether movement will not be displayed.
+          </Text>
+
           <BlockList
             lastTenBlocks={this.state.lastTenBlocks}
             web3={this.state.web3}
           />
+
+          <Text size="xsmall" style={{marginBottom: "50px"}}>
+            Made with ♡ by <a href="https://albererre.com/" target="_blank">Alber Erre</a>
+          </Text>
 
         </div>
       </AragonApp>

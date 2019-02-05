@@ -102,7 +102,9 @@ class MainInfo extends Component {
         <div className="headerGroupItem">
           <div className="headerInnerItem">
             <span>Block hash</span>
-            <Badge shape="compact">
+            <Badge shape="compact"
+              background={badgeStyles.greyBackground} 
+              foreground={badgeStyles.greyTextColor}>
               {this.props.lastBlockHash}            
             </Badge>
           </div>
