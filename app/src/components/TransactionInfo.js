@@ -36,14 +36,14 @@ class TransactionInfo extends Component {
 
             <div className="tableCellContent">
                 <span>
-                Gas price
+                Gas price (Gwei)
                 </span>
                 <span>
                     <Badge shape="compact"
                     background={badgeStyles.greyBackground} 
                     foreground={badgeStyles.greyTextColor}>
                         <div className="transactionText">
-                            {transactioninfo.gasPrice}
+                            {Number(transactioninfo.gasPrice)/1000000000}
                         </div>
                     </Badge>
                 </span>
