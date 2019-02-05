@@ -5,6 +5,11 @@ import "./TransactionInfo.css";
 
 class TransactionInfo extends Component {
 
+  transformWeiToEther = (amount) => {
+
+    return this.props.web3.utils.fromWei(amount, 'ether');
+  };
+
   render() {
 
     const { badgeStyles, transactioninfo } = this.props;
@@ -16,14 +21,14 @@ class TransactionInfo extends Component {
         <div className="transactionInnerContainer">
             <div className="tableCellContent">
                 <span>
-                Ether (wei)
+                Ether
                 </span>
                 <span>
                     <Badge shape="compact"
                     background={badgeStyles.greyBackground} 
                     foreground={badgeStyles.greyTextColor}>
                         <div className="transactionText">
-                            {transactioninfo.value}
+                            {this.transformWeiToEther(transactioninfo.value)}
                         </div>
                     </Badge>
                 </span>
