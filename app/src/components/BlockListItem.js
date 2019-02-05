@@ -22,7 +22,9 @@ class BlockListItem extends Component {
         greenTextColor: "white",
         blueEagleBackground: "#00cbe6",
       },
-      onlyPaidTransactions: []
+      onlyPaidTransactions: [],
+      etherscanUrl: "https://etherscan.io/tx/",
+      transactionHashEtherscan: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -37,6 +39,8 @@ class BlockListItem extends Component {
   };
 
   updateTransactionInfo = async (transactionObject) => {
+
+    this.setEtherscanTransactionHash(transactionObject.hash);
   
     this.setState({
         transactioninfo: transactionObject
@@ -47,6 +51,13 @@ class BlockListItem extends Component {
     
     return await this.props.web3.eth.getTransaction(transactionHash);
   };
+
+  setEtherscanTransactionHash(transactionHash) {
+
+    this.setState({
+      transactionHashEtherscan: transactionHash
+    });
+  }
 
   componentDidMount = async () => {
 
@@ -103,39 +114,39 @@ class BlockListItem extends Component {
           <TableRow>
 
             <TableCell>
-            <div className="tableCellContent">
-              <Button.Anchor mode="outline" wide href="https://aragon.one/" target="_blank">
-                <div className="etherscanButton">
-                  <span>
-                    <IconShare />
-                  </span>
-                  <Text size="normal">see</Text>
-                  <Text size="normal" style={{marginBottom: "5px"}}>transaction</Text>
-                  <Text size="xsmall">(etherscan.io)</Text>
-                </div>
-              </Button.Anchor>
-            </div>
 
-
-
-            <div className="tableCellContent">
-              <span>
-              Block transactions
-              </span>
-              <DropDown
-                items={this.state.onlyPaidTransactions.map(transaction => transaction.hash)}
-                active={this.state.activeItem}
-                onChange={this.handleChange}
-              />
-              <div>
-                <TransactionInfo
-                  transactionObjectSelected={this.state.onlyPaidTransactions[this.state.activeItem]}
-                  web3={this.props.web3}
-                  transactioninfo={this.state.transactioninfo}
-                  badgeStyles={this.state.badgeStyles}
+              <div className="tableCellContent">
+                <span style={{marginBottom: "5px"}}>
+                Block transactions
+                </span>
+                <DropDown
+                  items={this.state.onlyPaidTransactions.map(transaction => transaction.hash)}
+                  active={this.state.activeItem}
+                  onChange={this.handleChange}
                 />
+                <div>
+                  <TransactionInfo
+                    transactionObjectSelected={this.state.onlyPaidTransactions[this.state.activeItem]}
+                    web3={this.props.web3}
+                    transactioninfo={this.state.transactioninfo}
+                    badgeStyles={this.state.badgeStyles}
+                  />
+                </div>
               </div>
-            </div>
+
+              <div className="tableCellContent rightButton">
+                <Button.Anchor mode="outline" wide href={this.state.etherscanUrl + this.state.transactionHashEtherscan} target="_blank">
+                  <div className="etherscanButton">
+                    <span>
+                      <IconShare />
+                    </span>
+                    <Text size="normal">see</Text>
+                    <Text size="normal" style={{marginBottom: "5px"}}>transaction</Text>
+                    <Text size="xsmall">(etherscan.io)</Text>
+                  </div>
+                </Button.Anchor>
+              </div>
+
             </TableCell>
 
           </TableRow>
