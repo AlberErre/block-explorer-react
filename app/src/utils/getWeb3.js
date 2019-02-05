@@ -26,10 +26,10 @@ const getWeb3 = () =>
       // Fallback to localhost; use dev console port by default...
       else {
         const provider = new Web3.providers.HttpProvider(
-          "https://rinkeby.infura.io/v3/813f7758462347cbb1d64391851852d1"
+          "https://mainnet.infura.io/v3/813f7758462347cbb1d64391851852d1"
         );
         const web3 = new Web3(provider);
-        console.log("No web3 instance injected, using infura web3 (rinkeby).");
+        console.log("No web3 instance injected, using infura web3 (mainnet).");
         resolve(web3);
       }
     });
