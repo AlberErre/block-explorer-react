@@ -31,3 +31,42 @@
 .timeAgo {
     font-size: 1.4em;
 }
+
+@media only screen and (max-width: 1000px) {
+
+    .headerContainer {
+        font-size: 0.9em;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .currentBlockNumber {
+        font-size: 1.2em;
+    }
+
+    .headerInnerItem {
+        font-size: 0.8em!important;
+        padding: 3px; 
+        overflow: hidden;
+    }
+
+    .headerGroupItem {
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    
+    .mobileTopInfo {
+        margin-bottom: 20px;
+    }
+
+    .mobileBottomInfo {
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+    }
+
+    .mainBlockHash {
+    }
+
+}

@@ -13,3 +13,27 @@
     display: flex;
     flex-direction: column;
 }
+
+@media only screen and (max-width: 1000px) {
+    .transactionText {
+        font-size: 1em;
+    }
+
+    div.blockList > div > div > table {
+        color: red;
+        font-size: 0.8em;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+
+    .TransactionInfoContainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mobileEtherValues {
+        display: flex;
+        flex-direction: row;  
+    }
+}

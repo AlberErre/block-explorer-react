@@ -26,9 +26,9 @@ class MainInfo extends Component {
     return (
       <div className="headerContainer">
 
-        <div className="headerGroupItem">
+        <div className="headerGroupItem mobileTopInfo">
 
-          <div className="headerInnerItem">
+          <div className="4">
             <Text size="xlarge">
               Last block
             </Text>
@@ -62,7 +62,7 @@ class MainInfo extends Component {
 
         </div>
 
-        <div className="headerGroupItem">
+        <div className="headerGroupItem mobileBottomInfo">
 
           <div className="headerInnerItem">
             <span>Network ID</span>
@@ -99,16 +99,7 @@ class MainInfo extends Component {
           </div>
         </div>
 
-        <div className="headerGroupItem">
-          <div className="headerInnerItem">
-            <span>Block hash</span>
-            <Badge shape="compact"
-              background={badgeStyles.greyBackground} 
-              foreground={badgeStyles.greyTextColor}>
-              {this.props.lastBlockHash}            
-            </Badge>
-          </div>
-
+        <div className="headerGroupItem mobileBottomInfo">
           <div className="headerInnerItem">
             <span>Block size</span>
             <span>
@@ -131,6 +122,16 @@ class MainInfo extends Component {
               </Badge>
             </span>
           </div>
+
+          <div className="headerInnerItem mainBlockHash">
+            <span>Block hash</span>
+            <Badge shape="compact"
+              background={badgeStyles.greyBackground} 
+              foreground={badgeStyles.greyTextColor}>
+              {this.props.lastBlockHash}            
+            </Badge>
+          </div>
+
         </div>
 
       </div>

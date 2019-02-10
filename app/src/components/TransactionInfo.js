@@ -18,7 +18,7 @@ class TransactionInfo extends Component {
         
       <div className="TransactionInfoContainer">
 
-        <div className="transactionInnerContainer">
+        <div className="transactionInnerContainer mobileEtherValues">
             <div className="tableCellContent">
                 <span>
                 Ether

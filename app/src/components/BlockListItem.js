@@ -114,39 +114,41 @@ class BlockListItem extends Component {
           <TableRow>
 
             <TableCell>
+              <div className="OuterTableCellContent">
 
-              <div className="tableCellContent">
-                <span style={{marginBottom: "5px"}}>
-                Block transactions
-                </span>
-                <DropDown
-                  items={this.state.onlyPaidTransactions.map(transaction => transaction.hash)}
-                  active={this.state.activeItem}
-                  onChange={this.handleChange}
-                />
-                <div>
-                  <TransactionInfo
-                    transactionObjectSelected={this.state.onlyPaidTransactions[this.state.activeItem]}
-                    web3={this.props.web3}
-                    transactioninfo={this.state.transactioninfo}
-                    badgeStyles={this.state.badgeStyles}
+                <div className="tableCellContent">
+                  <span style={{marginBottom: "5px"}}>
+                  Block transactions
+                  </span>
+                  <DropDown
+                    items={this.state.onlyPaidTransactions.map(transaction => transaction.hash)}
+                    active={this.state.activeItem}
+                    onChange={this.handleChange}
                   />
-                </div>
-              </div>
-
-              <div className="tableCellContent rightButton">
-                <Button.Anchor mode="outline" wide href={this.state.etherscanUrl + this.state.transactionHashEtherscan} target="_blank">
-                  <div className="etherscanButton">
-                    <span>
-                      <IconShare />
-                    </span>
-                    <Text size="normal">see</Text>
-                    <Text size="normal" style={{marginBottom: "5px"}}>transaction</Text>
-                    <Text size="xsmall">(etherscan.io)</Text>
+                  <div>
+                    <TransactionInfo
+                      transactionObjectSelected={this.state.onlyPaidTransactions[this.state.activeItem]}
+                      web3={this.props.web3}
+                      transactioninfo={this.state.transactioninfo}
+                      badgeStyles={this.state.badgeStyles}
+                    />
                   </div>
-                </Button.Anchor>
-              </div>
+                </div>
 
+                <div className="tableCellContent rightButton">
+                  <Button.Anchor mode="outline" wide href={this.state.etherscanUrl + this.state.transactionHashEtherscan} target="_blank">
+                    <div className="etherscanButton">
+                      <span>
+                        <IconShare />
+                      </span>
+                      <Text size="normal">see</Text>
+                      <Text size="normal" style={{marginBottom: "5px"}}>transaction</Text>
+                      <Text size="xsmall">(etherscan.io)</Text>
+                    </div>
+                  </Button.Anchor>
+                </div>
+
+              </div>
             </TableCell>
 
           </TableRow>
