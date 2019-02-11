@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { AragonApp, Text } from '@aragon/ui';
+import { BarLoader } from 'react-spinners';
 import getWeb3 from "./utils/getWeb3";
 import MainInfo from "./components/MainInfo";
 import BlockList from "./components/BlockList";
@@ -23,6 +24,7 @@ class App extends Component {
       lastBlockTransactions: null,
       difficulty: null,
       lastTenBlocks: [],
+      loading: true,
     };
   }
 
@@ -97,7 +99,8 @@ class App extends Component {
 
     ).then( result => {
       this.setState({
-        lastTenBlocks: result
+        lastTenBlocks: result,
+        loading: false
       });
     });
   };
@@ -106,40 +109,52 @@ class App extends Component {
 
     return (
       <AragonApp publicUrl="/aragon-ui-assets/">
-
-        <div className="App">
-
-          <Text size="xxlarge" style={{margin: "20px"}}>
-            <i className="fab fa-ethereum"></i> Ethereum Block Explorer
-          </Text>
-
-          <div className="aragonCard Header">
-            <MainInfo
-              networkId={this.state.networkId}
-              lastBlockNumber={this.state.lastBlockNumber}
-              lastBlockHash={this.state.lastBlockHash}
-              lastBlockSize={this.state.lastBlockSize}
-              gasUsedOnBlock={this.state.gasUsedOnBlock}
-              lastBlockTime={this.state.lastBlockTime}
-              lastBlockTransactions={this.state.lastBlockTransactions}
-              difficulty={this.state.difficulty}
-            />
-          </div>
-
-          <Text size="xsmall" style={{width: "75vw", marginBottom: "30px", textAlign: "center"}}>
-            Here you can see the last ten blocks on Ethereum and all its transactions within each block. Transactions without ether movement will not be displayed.
-          </Text>
-
-          <BlockList
-            lastTenBlocks={this.state.lastTenBlocks}
-            web3={this.state.web3}
+        
+        <div className="spinnerContainer">
+          <BarLoader
+            color={'#00F0E0'}
+            loading={this.state.loading}
           />
-
-          <Text size="xsmall" style={{marginBottom: "50px"}}>
-            Made with ♡ by <a href="https://albererre.com/" target="_blank">Alber Erre</a>
-          </Text>
-
         </div>
+        
+        {
+          !this.state.loading &&
+
+          <div className="App">
+
+            <Text size="xxlarge" style={{margin: "20px"}}>
+              <i className="fab fa-ethereum"></i> Ethereum Block Explorer
+            </Text>
+
+            <div className="aragonCard Header">
+              <MainInfo
+                networkId={this.state.networkId}
+                lastBlockNumber={this.state.lastBlockNumber}
+                lastBlockHash={this.state.lastBlockHash}
+                lastBlockSize={this.state.lastBlockSize}
+                gasUsedOnBlock={this.state.gasUsedOnBlock}
+                lastBlockTime={this.state.lastBlockTime}
+                lastBlockTransactions={this.state.lastBlockTransactions}
+                difficulty={this.state.difficulty}
+              />
+            </div>
+
+            <Text size="xsmall" style={{width: "75vw", marginBottom: "30px", textAlign: "center"}}>
+              Here you can see the last ten blocks on Ethereum and all its transactions within each block. Transactions without ether movement will not be displayed.
+            </Text>
+
+            <BlockList
+              lastTenBlocks={this.state.lastTenBlocks}
+              web3={this.state.web3}
+            />
+
+            <Text size="xsmall" style={{marginBottom: "50px"}}>
+              Made with ♡ by <a href="https://albererre.com/" target="_blank">Alber Erre</a>
+            </Text>
+
+          </div>
+        }
+
       </AragonApp>
     );
   }

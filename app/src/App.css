@@ -43,6 +43,14 @@
   padding: 30px;
 }
 
+.spinnerContainer {
+  position: absolute;
+  top: 10vh;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 @media only screen and (max-width: 1000px) {
 
   .aragonCard {
