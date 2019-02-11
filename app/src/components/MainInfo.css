@@ -58,15 +58,22 @@
     }
     
     .mobileTopInfo {
-        margin-bottom: 20px;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        margin-bottom: 10px;
+    }
+
+    .mobileTopInfo > div > span {
+        font-size: 1.2em;
+    }
+
+    .mobileTopInfo > .headerInnerItem > span {
+        font-size: 1em;
     }
 
     .mobileBottomInfo {
         display: grid;
         grid-template-columns: 33% 33% 33%;
-    }
-
-    .mainBlockHash {
     }
 
 }

@@ -23,6 +23,10 @@
         color: red;
         font-size: 0.8em;
     }
+
+    .TransactionInfoContainer {
+        margin-bottom: 10px;
+    }
 }
 
 @media only screen and (max-width: 550px) {
@@ -30,6 +34,7 @@
     .TransactionInfoContainer {
         display: flex;
         flex-direction: column;
+        margin-bottom: 10px;
     }
 
     .mobileEtherValues {

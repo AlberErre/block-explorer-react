@@ -105,6 +105,7 @@ class BlockListItem extends Component {
     return (
       <div className="BlockListItem">
         <Table
+          className="tableContainer"
           header={
             <TableRow>
               <TableHeader title={ `Block Number ${this.props.block.number}`} />
