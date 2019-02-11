@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://albererre.com/blockexplorer/",
+  "homepage": "https://albererre.github.io/block-explorer-react/",
   "dependencies": {
     "@aragon/ui": "^0.30.1",
     "gh-pages": "^2.0.1",
