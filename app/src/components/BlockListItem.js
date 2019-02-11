@@ -142,9 +142,11 @@ class BlockListItem extends Component {
                       <span>
                         <IconShare />
                       </span>
-                      <Text size="normal">see</Text>
-                      <Text size="normal" style={{marginBottom: "5px"}}>transaction</Text>
-                      <Text size="xsmall">(etherscan.io)</Text>
+                      <div className="etherscanButton hideOnMobile">
+                        <Text size="normal">see</Text>
+                        <Text size="normal" style={{marginBottom: "5px"}}>transaction</Text>
+                        <Text size="xsmall">(etherscan.io)</Text>
+                      </div>
                     </div>
                   </Button.Anchor>
                 </div>

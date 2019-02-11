@@ -56,6 +56,15 @@
         align-items: stretch;
     }
 
+    .etherscanButton {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
+        padding: 5px;
+    }
+
     .rightButton {
         margin-right: 0;
     }
@@ -68,4 +77,13 @@
     .tableCellContent {
         padding: 0!important;
     }
+}
+
+
+@media only screen and (max-width: 550px) {
+
+    .hideOnMobile {
+        display: none;
+    }
+
 }
