@@ -37,12 +37,22 @@
 }
 
 .tableContainer .bqABXJ{
-    max-width: 75vw;
+    width: 75vw;
     padding: 15px!important;
 }
 
 .tableCellContent {
     padding: 0!important;
+}
+
+.bWgcJR {
+    height: 110px;
+    width: 100%;
+    overflow-y: scroll; 
+}
+
+.DropDown__StyledDropDown-sc-17zpefi-0.fBoWue {
+    width: 100%;
 }
 
 @media only screen and (max-width: 1135px) {
@@ -72,7 +82,7 @@
     }
 
     .tableContainer .bqABXJ{
-        max-width: 75vw;
+        width: 75vw;
         padding: 15px!important;
     }
     
