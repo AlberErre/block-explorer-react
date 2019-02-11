@@ -31,8 +31,9 @@
     padding: 20px;
 }
 
-.rightButton {
+.marginButton {
     margin-right: 5vw;
+    margin-left: 10px;
 }
 
 .tableContainer .bqABXJ{
@@ -44,7 +45,7 @@
     padding: 0!important;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1135px) {
 
     .BlockListItem {
         font-size: 1em;
@@ -65,8 +66,9 @@
         padding: 5px;
     }
 
-    .rightButton {
+    .marginButton {
         margin-right: 0;
+        margin-left: 0;
     }
 
     .tableContainer .bqABXJ{
@@ -78,7 +80,6 @@
         padding: 0!important;
     }
 }
-
 
 @media only screen and (max-width: 550px) {
 

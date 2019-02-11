@@ -136,7 +136,7 @@ class BlockListItem extends Component {
                   </div>
                 </div>
 
-                <div className="tableCellContent rightButton">
+                <div className="tableCellContent marginButton">
                   <Button.Anchor mode="outline" wide href={this.state.etherscanUrl + this.state.transactionHashEtherscan} target="_blank">
                     <div className="etherscanButton">
                       <span>
