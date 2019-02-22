@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, TableHeader, TableRow, TableCell, Text, Badge, DropDown } from '@aragon/ui';
+import { Badge } from '@aragon/ui';
 
 import "./TransactionInfo.css";
 

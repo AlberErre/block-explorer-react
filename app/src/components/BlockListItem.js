@@ -35,14 +35,14 @@ class BlockListItem extends Component {
   }
 
   handleChange(index) {
+    let {onlyPaidTransactions, activeItem} = this.state; 
 
     this.setState({ 
       activeItem: index 
-    }, () => this.updateTransactionInfo(this.state.onlyPaidTransactions[this.state.activeItem]));
+    }, () => this.updateTransactionInfo(onlyPaidTransactions[activeItem]));
   };
 
   updateTransactionInfo = async (transactionObject) => {
-
     this.setEtherscanTransactionHash(transactionObject.hash);
   
     this.setState({
@@ -51,7 +51,7 @@ class BlockListItem extends Component {
   };
 
   returnTransactionInfoFromEthereum = async (transactionHash) => {
-    
+
     return await this.props.web3.eth.getTransaction(transactionHash);
   };
 
@@ -68,25 +68,19 @@ class BlockListItem extends Component {
     Promise.all(
 
       this.props.block.blockTransactions.map( transactionHash => {
-
         return this.returnTransactionInfoFromEthereum(transactionHash);
       })
     
     ).then( transactionData => {
-
       const onlyPaidTransactions = transactionData.filter( transaction => transaction.value > 0 );
 
-      console.log(onlyPaidTransactions);
-
       if (onlyPaidTransactions.length > 0) {
-
         this.setState({
           onlyPaidTransactions: onlyPaidTransactions,
           spinnerIsActive: false
         }, () => this.updateTransactionInfo(this.state.onlyPaidTransactions[0]));
 
       } else {
-
         let noPaidTransactionsObject = [{
           gasPrice: 0,
           hash: "No paid transactions has been sent on this block",
@@ -99,7 +93,6 @@ class BlockListItem extends Component {
           onlyPaidTransactions: noPaidTransactionsObject,
           spinnerIsActive: false
         }, () => this.updateTransactionInfo(noPaidTransactionsObject[0]));
-
       }
 
     });
@@ -127,10 +120,7 @@ class BlockListItem extends Component {
                 <span>
                   Loading block data...
                   <div style={{marginTop: "10px"}}>
-                    <BarLoader
-                      color={'#00F0E0'}
-                      loading={this.state.loading}
-                    />
+                    <BarLoader color={'#00F0E0'} />
                   </div>
                 </span>
               }
