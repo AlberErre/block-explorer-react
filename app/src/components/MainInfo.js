@@ -22,6 +22,8 @@ class MainInfo extends Component {
   render() {
 
     const { badgeStyles } = this.state;
+    const { lastBlockNumber, lastBlockTime, networkId, gasUsedOnBlock,
+            difficulty, lastBlockSize, lastBlockHash } = this.props;
 
     return (
       <div className="headerContainer">
@@ -37,7 +39,7 @@ class MainInfo extends Component {
               background={"transparent"} 
               foreground={"white"}>
                 <div className="currentBlockNumber">
-                  {this.props.lastBlockNumber}            
+                  {lastBlockNumber}            
                 </div>
               </Badge>
             </div>
@@ -53,7 +55,7 @@ class MainInfo extends Component {
                 foreground={badgeStyles.greyTextColor}>
                   <div className="timeAgo">
                     <Moment durationFromNow interval={1000} ago>
-                      {new Date(this.props.lastBlockTime*1000)}
+                      {new Date(lastBlockTime*1000)}
                     </Moment>   
                   </div>      
               </Badge>
@@ -71,7 +73,7 @@ class MainInfo extends Component {
                 background={badgeStyles.greyBackground} 
                 foreground={badgeStyles.greyTextColor}
                 style={{paddingRight: "5px",paddingLeft: "5px"}}>
-                {this.props.networkId}            
+                {networkId}            
               </Badge>
             </span>
           </div>
@@ -82,7 +84,7 @@ class MainInfo extends Component {
               <Badge shape="compact"
                 background={badgeStyles.greyBackground} 
                 foreground={badgeStyles.greyTextColor}>
-                {this.props.gasUsedOnBlock}            
+                {gasUsedOnBlock}            
               </Badge>
             </span>
           </div>
@@ -93,7 +95,7 @@ class MainInfo extends Component {
               <Badge shape="compact"
                 background={badgeStyles.greyBackground} 
                 foreground={badgeStyles.greyTextColor}>
-                {this.props.difficulty}            
+                {difficulty}            
               </Badge>
             </span>
           </div>
@@ -106,7 +108,7 @@ class MainInfo extends Component {
               <Badge shape="compact"
                 background={badgeStyles.greyBackground} 
                 foreground={badgeStyles.greyTextColor}>
-                {this.props.lastBlockSize}            
+                {lastBlockSize}            
               </Badge>
             </span>
 
@@ -118,7 +120,7 @@ class MainInfo extends Component {
               <Badge shape="compact"
                 background={badgeStyles.greyBackground} 
                 foreground={badgeStyles.greyTextColor}>
-                {this.props.lastBlockTime}            
+                {lastBlockTime}            
               </Badge>
             </span>
           </div>
@@ -128,7 +130,7 @@ class MainInfo extends Component {
             <Badge shape="compact"
               background={badgeStyles.greyBackground} 
               foreground={badgeStyles.greyTextColor}>
-              {this.props.lastBlockHash}            
+              {lastBlockHash}            
             </Badge>
           </div>
 

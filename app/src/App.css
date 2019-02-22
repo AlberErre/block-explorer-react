@@ -30,19 +30,6 @@
   margin-bottom: 6vh;
 }
 
-.aragonCard {
-  box-shadow: rgba(0, 0, 0, 0.07) 0px 4px 6px 0px;
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100%;
-  width: 75vw;
-  border-radius: 3px;
-  padding: 30px;
-}
-
 .spinnerContainer {
   position: absolute;
   top: 10vh;
