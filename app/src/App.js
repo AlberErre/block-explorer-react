@@ -24,7 +24,7 @@ class App extends Component {
       lastBlockTransactions: null,
       difficulty: null,
       lastTenBlocks: [],
-      loading: true,
+      loadingSpinner: true,
     };
   }
 
@@ -100,25 +100,32 @@ class App extends Component {
     ).then( result => {
       this.setState({
         lastTenBlocks: result,
-        loading: false
+        loadingSpinner: false
       });
     });
   };
 
   render() {
 
+    const { loadingSpinner, networkId, lastBlockNumber, lastBlockHash, lastBlockSize,
+            gasUsedOnBlock, lastBlockTime, lastBlockTransactions, difficulty, 
+            lastTenBlocks, web3} = this.state;
+
     return (
       <AragonApp publicUrl="/aragon-ui-assets/">
         
-        <div className="spinnerContainer">
-          <BarLoader
-            color={'#00F0E0'}
-            loading={this.state.loading}
-          />
-        </div>
+        {
+          loadingSpinner &&
+          <div className="spinnerContainer">
+            Loading...
+            <div style={{marginTop: "10px"}}>
+              <BarLoader color={'#00F0E0'} />
+            </div>
+          </div>
+        }
         
         {
-          !this.state.loading &&
+          !loadingSpinner &&
 
           <div className="App">
 
@@ -128,14 +135,14 @@ class App extends Component {
 
             <div className="aragonCard Header">
               <MainInfo
-                networkId={this.state.networkId}
-                lastBlockNumber={this.state.lastBlockNumber}
-                lastBlockHash={this.state.lastBlockHash}
-                lastBlockSize={this.state.lastBlockSize}
-                gasUsedOnBlock={this.state.gasUsedOnBlock}
-                lastBlockTime={this.state.lastBlockTime}
-                lastBlockTransactions={this.state.lastBlockTransactions}
-                difficulty={this.state.difficulty}
+                networkId={networkId}
+                lastBlockNumber={lastBlockNumber}
+                lastBlockHash={lastBlockHash}
+                lastBlockSize={lastBlockSize}
+                gasUsedOnBlock={gasUsedOnBlock}
+                lastBlockTime={lastBlockTime}
+                lastBlockTransactions={lastBlockTransactions}
+                difficulty={difficulty}
               />
             </div>
 
@@ -144,8 +151,8 @@ class App extends Component {
             </Text>
 
             <BlockList
-              lastTenBlocks={this.state.lastTenBlocks}
-              web3={this.state.web3}
+              lastTenBlocks={lastTenBlocks}
+              web3={web3}
             />
 
             <Text size="xsmall" style={{marginBottom: "50px"}}>
