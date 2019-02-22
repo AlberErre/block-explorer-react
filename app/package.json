@@ -1,6 +1,6 @@
 {
-  "name": "client",
-  "version": "0.1.0",
+  "name": "block-explorer-albererre",
+  "version": "1.0.0",
   "private": true,
   "homepage": "https://albererre.github.io/block-explorer-react/",
   "dependencies": {
@@ -31,5 +31,10 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.9.1",
+    "jest": "23.6.0"
+  }
 }
