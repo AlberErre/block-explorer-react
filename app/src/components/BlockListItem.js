@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { Table, TableHeader, TableRow, TableCell, Text, Badge, DropDown, Button, IconShare } from '@aragon/ui';
+import { Table, TableHeader, TableRow, TableCell, 
+         Text, DropDown, Button, IconShare } from '@aragon/ui';
 import TransactionInfo from "./TransactionInfo";
+import { BarLoader } from 'react-spinners';
 import "./BlockListItem.css";
 
 class BlockListItem extends Component {
@@ -9,6 +11,7 @@ class BlockListItem extends Component {
     super(props);
 
     this.state = {
+      spinnerIsActive: true,
       activeItem: 0,
       transactioninfo: {
         value: 0,
@@ -78,7 +81,8 @@ class BlockListItem extends Component {
       if (onlyPaidTransactions.length > 0) {
 
         this.setState({
-          onlyPaidTransactions: onlyPaidTransactions
+          onlyPaidTransactions: onlyPaidTransactions,
+          spinnerIsActive: false
         }, () => this.updateTransactionInfo(this.state.onlyPaidTransactions[0]));
 
       } else {
@@ -92,7 +96,8 @@ class BlockListItem extends Component {
         }];
 
         this.setState({
-          onlyPaidTransactions: noPaidTransactionsObject
+          onlyPaidTransactions: noPaidTransactionsObject,
+          spinnerIsActive: false
         }, () => this.updateTransactionInfo(noPaidTransactionsObject[0]));
 
       }
@@ -101,57 +106,77 @@ class BlockListItem extends Component {
   }
 
   render() {
-    
+    const { web3, block } = this.props;
+    const { spinnerIsActive, onlyPaidTransactions, activeItem,
+            transactioninfo, badgeStyles, etherscanUrl, transactionHashEtherscan } = this.state;
+
     return (
       <div className="BlockListItem">
-        <Table
-          className="tableContainer"
+
+        <Table className="tableContainer"
           header={
             <TableRow>
-              <TableHeader title={ `Block Number ${this.props.block.number}`} />
+              <TableHeader title={ `Block Number ${block.number}`} />
             </TableRow>
-          }
-        >
+          }>
           <TableRow>
 
             <TableCell>
-              <div className="OuterTableCellContent">
-
-                <div className="tableCellContent">
-                  <span style={{marginBottom: "5px"}}>
-                  Block transactions
-                  </span>
-                  <DropDown
-                    items={this.state.onlyPaidTransactions.map(transaction => transaction.hash)}
-                    active={this.state.activeItem}
-                    onChange={this.handleChange}
-                  />
-                  <div>
-                    <TransactionInfo
-                      transactionObjectSelected={this.state.onlyPaidTransactions[this.state.activeItem]}
-                      web3={this.props.web3}
-                      transactioninfo={this.state.transactioninfo}
-                      badgeStyles={this.state.badgeStyles}
+              {
+                spinnerIsActive &&
+                <span>
+                  Loading block data...
+                  <div style={{marginTop: "10px"}}>
+                    <BarLoader
+                      color={'#00F0E0'}
+                      loading={this.state.loading}
                     />
                   </div>
-                </div>
+                </span>
+              }
 
-                <div className="tableCellContent marginButton">
-                  <Button.Anchor mode="outline" wide href={this.state.etherscanUrl + this.state.transactionHashEtherscan} target="_blank">
-                    <div className="etherscanButton">
-                      <span>
-                        <IconShare />
-                      </span>
-                      <div className="etherscanButton hideOnMobile">
-                        <Text size="normal">see</Text>
-                        <Text size="normal" style={{marginBottom: "5px"}}>transaction</Text>
-                        <Text size="xsmall">(etherscan.io)</Text>
-                      </div>
+              {
+                !spinnerIsActive && 
+                <div className="OuterTableCellContent">
+
+                  <div className="tableCellContent">
+                    <span style={{marginBottom: "5px"}}>
+                    Block transactions
+                    </span>
+                    <DropDown
+                      items={onlyPaidTransactions.map(transaction => transaction.hash)}
+                      active={activeItem}
+                      onChange={this.handleChange}
+                    />
+                    <div>
+                      <TransactionInfo
+                        transactionObjectSelected={onlyPaidTransactions[activeItem]}
+                        web3={web3}
+                        transactioninfo={transactioninfo}
+                        badgeStyles={badgeStyles}
+                      />
                     </div>
-                  </Button.Anchor>
-                </div>
+                  </div>
 
-              </div>
+                  <div className="etherscanButton">
+                    <Button.Anchor 
+                      mode="outline" wide target="_blank"
+                      href={etherscanUrl + transactionHashEtherscan}>
+                      <div className="etherscanButton">
+                        <span>
+                          <IconShare />
+                        </span>
+                        <div className="etherscanButton hideOnMobile">
+                          <Text size="normal">see</Text>
+                          <Text size="normal" style={{marginBottom: "5px"}}>transaction</Text>
+                          <Text size="xsmall">(etherscan.io)</Text>
+                        </div>
+                      </div>
+                    </Button.Anchor>
+                  </div>
+
+                </div>
+              }
             </TableCell>
 
           </TableRow>
