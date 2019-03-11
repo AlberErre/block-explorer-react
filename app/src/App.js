@@ -29,26 +29,17 @@ class App extends Component {
   }
 
   componentDidMount = async () => {
-    try {
-      const web3 = await getWeb3();
-      const accounts = await web3.eth.getAccounts();
-      const networkId = await web3.eth.net.getId();
+    const web3 = await getWeb3();
+    const accounts = await web3.eth.getAccounts();
+    const networkId = await web3.eth.net.getId();
 
-      await this.setState({
-        web3: web3,
-        accounts: accounts,
-        networkId: networkId
-      }, this.getLastBlockInfo);
+    await this.setState({
+      web3: web3,
+      accounts: accounts,
+      networkId: networkId
+    }, this.getLastBlockInfo);
 
-      setInterval(this.getLastBlockInfo, 10000);
-
-    } catch (error) {
-      // Catch any errors for any of the above operations.
-      alert(
-        `Failed to load web3, accounts, or contract. Check console for details.`,
-      );
-      console.error(error);
-    }
+    setInterval(this.getLastBlockInfo, 10000);
   };
 
   getLastBlockInfo = async () => {
